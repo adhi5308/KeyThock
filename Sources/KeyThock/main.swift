@@ -125,13 +125,13 @@ private final class KeyboardMonitor {
     private var eventTap: CFMachPort?
     private var lastKeyTime: TimeInterval = 0
 
-    var hasPermission: Bool { AXIsProcessTrusted() }
+    // Global keyboard listening is governed by the Core Graphics event-listen
+    // permission. On current macOS this is shown in System Settings under
+    // Device Control and Data Access, rather than the older AX trust API.
+    var hasPermission: Bool { CGPreflightListenEventAccess() }
 
     func requestPermission() {
-        // The imported C global is mutable under Swift 6's strict concurrency
-        // checks. This is its documented string value.
-        let options = ["AXTrustedCheckOptionPrompt": true] as CFDictionary
-        _ = AXIsProcessTrustedWithOptions(options)
+        _ = CGRequestListenEventAccess()
     }
 
     func start() {
