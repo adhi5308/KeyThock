@@ -3,7 +3,7 @@ import ApplicationServices
 import AVFoundation
 
 @MainActor
-final class AppDelegate: NSObject, NSApplicationDelegate {
+final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private let monitor = KeyboardMonitor()
     private let soundEngine = MechanicalSoundEngine()
     private var statusItem: NSStatusItem!
@@ -66,7 +66,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         permissionItem.target = self
         menu.addItem(.separator())
         menu.addItem(withTitle: "Quit KeyThock", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        menu.delegate = self
         statusItem.menu = menu
+    }
+
+    // Accessibility can be granted while the app is open. Re-check it every
+    // time the menu opens so the listener starts without a terminal restart.
+    func menuWillOpen(_ menu: NSMenu) {
+        refreshPermissionState()
     }
 
     private func refreshPermissionState() {

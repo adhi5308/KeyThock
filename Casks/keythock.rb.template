@@ -7,7 +7,7 @@ cask "keythock" do
   desc "Menu-bar mechanical keyboard sounds for macOS"
   homepage "https://github.com/OWNER_REPOSITORY"
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "KeyThock.app"
 
