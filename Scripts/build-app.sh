@@ -12,6 +12,7 @@ rm -rf "$app_path"
 mkdir -p "$app_path/Contents/MacOS" "$app_path/Contents/Resources"
 cp "AppBundle/Info.plist" "$app_path/Contents/Info.plist"
 cp ".build/release/KeyThock" "$app_path/Contents/MacOS/KeyThock"
+cp "AppBundle/KeyThock.icns" "$app_path/Contents/Resources/KeyThock.icns"
 cp -R "SoundPacks" "$app_path/Contents/Resources/SoundPacks"
 
 # Ad-hoc signing identifies the app as a local bundle to macOS.
