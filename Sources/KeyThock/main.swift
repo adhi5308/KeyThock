@@ -12,7 +12,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)
-        print("Haptyk is running. Use the ⌨ menu-bar item to control it.")
+        print("KeyThock is running. Use the ⌨ menu-bar item to control it.")
         monitor.onKeyDown = { [weak self] interval, keyCode in
             self?.soundEngine.play(interval: interval, keyCode: keyCode)
         }
@@ -25,10 +25,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         // A text fallback keeps the control visible if the SF Symbol cannot load.
         statusItem.button?.title = "⌨"
-        statusItem.button?.image = NSImage(systemSymbolName: "keyboard", accessibilityDescription: "Haptyk")
+        statusItem.button?.image = NSImage(systemSymbolName: "keyboard", accessibilityDescription: "KeyThock")
 
         let menu = NSMenu()
-        menu.addItem(withTitle: "Haptyk", action: nil, keyEquivalent: "")
+        menu.addItem(withTitle: "KeyThock", action: nil, keyEquivalent: "")
         menu.addItem(.separator())
 
         enabledItem = menu.addItem(withTitle: "Enable key sounds", action: #selector(toggleEnabled), keyEquivalent: "e")
@@ -65,7 +65,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         permissionItem = menu.addItem(withTitle: "Grant Accessibility permission…", action: #selector(requestPermission), keyEquivalent: "")
         permissionItem.target = self
         menu.addItem(.separator())
-        menu.addItem(withTitle: "Quit Haptyk", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        menu.addItem(withTitle: "Quit KeyThock", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         statusItem.menu = menu
     }
 
@@ -103,7 +103,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 @main
 @MainActor
-struct HaptykMain {
+struct KeyThockMain {
     static func main() {
         let app = NSApplication.shared
         let delegate = AppDelegate()

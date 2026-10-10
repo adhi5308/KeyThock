@@ -1,0 +1,20 @@
+cask "keythock" do
+  version "VERSION"
+  sha256 "SHA256"
+
+  url "https://github.com/OWNER_REPOSITORY/releases/download/v#{version}/KeyThock-#{version}.zip"
+  name "KeyThock"
+  desc "Menu-bar mechanical keyboard sounds for macOS"
+  homepage "https://github.com/OWNER_REPOSITORY"
+
+  depends_on macos: ">= :ventura"
+
+  app "KeyThock.app"
+
+    # KeyThock listens for keyboard events only after the user grants macOS
+  # Accessibility permission. It records and sends no keystroke data.
+  postflight do
+    quarantine = "/usr/bin/xattr"
+    system_command quarantine, args: ["-dr", "com.apple.quarantine", "#{appdir}/KeyThock.app"], sudo: false
+  end
+end

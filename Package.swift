@@ -2,12 +2,12 @@
 import PackageDescription
 
 let package = Package(
-    name: "Haptyk",
+    name: "KeyThock",
     platforms: [.macOS(.v13)],
     products: [
-        .executable(name: "Haptyk", targets: ["Haptyk"])
+        .executable(name: "KeyThock", targets: ["KeyThock"])
     ],
     targets: [
-        .executableTarget(name: "Haptyk")
+        .executableTarget(name: "KeyThock")
     ]
 )
